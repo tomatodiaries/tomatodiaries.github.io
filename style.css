@@ -77,3 +77,41 @@ footer{font-family:var(--mono);font-size:.75rem;color:var(--soft);padding:1.5rem
   nav{flex-direction:column;gap:.8rem;align-items:flex-start}
   .contact-list span{display:block;width:auto;line-height:1.2;margin-top:.8rem}
 }
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* fortress backdrop — fades out behind the text column */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:url(images/fortress.svg?v=20) no-repeat center bottom / cover;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.12) 25%,rgba(0,0,0,.12) 75%,#000 100%);
+          mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.12) 25%,rgba(0,0,0,.12) 75%,#000 100%);
+}
+/* landing page: the whole fortress at a flat 10% */
+.home-page::before{-webkit-mask-image:none;mask-image:none;opacity:.3}
+@media (max-width:600px){body::before{-webkit-mask-image:none;mask-image:none;opacity:.35}.home-page::before{opacity:.3}}
+
+/* hover a nav link: the page falls away and only the fortress remains */
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:url(images/fortress.svg?v=20) no-repeat center bottom / cover;
+  opacity:0;transition:opacity .7s ease;
+}
+main,footer{transition:opacity .9s ease}
+body:has(nav .brand:hover)::after{opacity:1}
+body:has(nav .brand:hover) main,body:has(nav .brand:hover) footer{opacity:0}
+@media (hover:none){body:has(nav .brand:hover)::after{opacity:0}body:has(nav .brand:hover) main,body:has(nav .brand:hover) footer{opacity:1}}
+
+/* landing page: "fortress" button draws the fortress, then everything fades back */
+body::before{transition:opacity .9s ease}
+.fort-btn{
+  position:fixed;right:clamp(1.2rem,4vw,3rem);bottom:1.4rem;
+  font-family:var(--mono);font-size:.9rem;letter-spacing:.02em;color:inherit;
+  background:none;border:0;padding:0;cursor:pointer;
+}
+.fort-btn:focus-visible{outline:1px dashed var(--ink);outline-offset:3px}
+.fort-btn:disabled{cursor:default}
+body.drawing::before{opacity:0}
+body.drawing main,body.drawing footer{opacity:0}
+.fort-draw{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.fort-draw svg{width:100%;height:100%;display:block}
