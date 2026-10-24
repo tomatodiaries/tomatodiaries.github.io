@@ -84,7 +84,7 @@ footer{font-family:var(--mono);font-size:.75rem;color:var(--soft);padding:1.5rem
 /* fortress backdrop — fades out behind the text column */
 body::before{
   content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:url(images/fortress.svg?v=21) no-repeat center bottom / cover;
+  background:url(images/fortress.svg?v=22) no-repeat center bottom / cover;
   -webkit-mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.12) 25%,rgba(0,0,0,.12) 75%,#000 100%);
           mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.12) 25%,rgba(0,0,0,.12) 75%,#000 100%);
 }
