@@ -76,7 +76,11 @@ figcaption{font-family:var(--mono);font-size:.8rem;color:var(--soft);margin-top:
 footer{font-family:var(--mono);font-size:.75rem;color:var(--soft);padding:1.5rem clamp(1.2rem,4vw,3rem)}
 
 @media (max-width:600px){
-  nav{flex-direction:column;gap:.8rem;align-items:flex-start}
+  nav{flex-direction:column;gap:.8rem;align-items:flex-start;position:relative}
+  /* de | en and the fortress icon sit on the top row, opposite the name */
+  nav li.lang,nav li:last-child{position:absolute;top:1.5rem;height:2rem;display:flex;align-items:center}
+  nav li:last-child{right:clamp(1.2rem,4vw,3rem)}
+  nav li.lang{right:calc(clamp(1.2rem,4vw,3rem) + 28px + 1rem)}
   .contact-list span{display:block;width:auto;line-height:1.2;margin-top:.8rem}
 }
 
